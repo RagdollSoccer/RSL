@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ragdoll Super League</title>
+<meta name="description" content="RSL — the Ragdoll Super League. Three divisions of Ragdoll Soccer on Roblox.">
+<meta name="theme-color" content="#1537d6">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,800;1,800&family=Barlow:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: loud matchday energy, but tidy like an official league site
+   IDEA: a matchday programme — crest, fixtures card, league tables, team sheet
+   PICTURE: a floodlit pitch where jointed ragdoll players go for a bicycle kick
+   COLOUR and TYPE: royal RSL blue fields, pitch green support, coral accent; Barlow Condensed 800 + Barlow
+   LAYOUT: full-width bands, nav → hero → fixtures → format → clubs → tables → join → rules → footer */
+:root{color-scheme:light dark;
+--blue:#1537d6;--blue2:#0f27a0;--deep:light-dark(#0c1f7a,#07103f);
+--bg:light-dark(#f4f6ff,#090d22);--card:light-dark(#ffffff,#121838);--ink:light-dark(#0b1233,#eef1ff);
+--mute:light-dark(#4a5578,#a3acd6);--line:light-dark(#dde2f5,#262e5a);
+--grass:#1f9d55;--grass2:#17834a;--coral:#ff4d5e;--gold:#ffd23f}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Barlow,system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:"Barlow Condensed",Impact,sans-serif;font-weight:800;line-height:1.05;margin:0;text-wrap:balance}
+h2{font-size:clamp(32px,5vw,48px)}h3{font-size:24px}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto}
+.band{padding:clamp(40px,6vw,80px) max(5vw,16px)}
+.lede{color:var(--mute);max-width:62ch;margin:10px 0 0;font-size:17px}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 22px;border-radius:999px;font:700 16px Barlow,sans-serif;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}.btn:focus-visible,button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.btn.primary{background:#fff;color:var(--blue2)}.btn.ghost{border-color:rgba(255,255,255,.7);color:#fff}
+.btn.solid{background:var(--blue);color:#fff}
+/* nav */
+nav{position:sticky;top:0;z-index:20;background:var(--blue2);color:#fff}
+nav .wrap{display:flex;align-items:center;gap:18px;padding:10px max(5vw,16px);flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:800 22px "Barlow Condensed",sans-serif;letter-spacing:.02em}
+.brand svg{width:36px;height:36px}
+.links{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
+.links a{padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:500;font-size:15px}
+.links a:hover{background:rgba(255,255,255,.14)}
+.links a.cta{background:#fff;color:var(--blue2);font-weight:700}
+/* hero */
+.hero{background:radial-gradient(120% 90% at 80% 0%,#3b63ff 0%,var(--blue) 45%,var(--blue2) 100%);color:#fff;position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(20px,4vw,56px);align-items:center;padding:clamp(36px,6vw,72px) max(5vw,16px) 0}
+.hero h1{font-size:clamp(52px,8.5vw,104px);letter-spacing:-.01em}
+.hero h1 span{display:block;font-style:italic;color:var(--gold)}
+.hero p{font-size:18px;max-width:46ch;opacity:.92;margin:18px 0 26px}
+.hero .actions{display:flex;gap:12px;flex-wrap:wrap}
+.facts{display:flex;gap:28px;flex-wrap:wrap;margin:34px 0 clamp(28px,5vw,60px)}
+.facts b{display:block;font:800 40px "Barlow Condensed",sans-serif;line-height:1}
+.facts small{opacity:.8;font-size:14px}
+.scene{align-self:end;position:relative;aspect-ratio:6/5}
+.scene svg{position:absolute;inset:0;width:100%;height:100%}
+.kick{transform-origin:330px 250px;animation:kick 3.2s ease-in-out infinite}
+.ballf{animation:ball 3.2s ease-in-out infinite}
+@keyframes kick{0%,100%{transform:rotate(0)}50%{transform:rotate(-8deg)}}
+@keyframes ball{0%,100%{transform:translate(0,0)}50%{transform:translate(-26px,-18px)}}
+/* status ribbon */
+.ribbon{background:var(--coral);color:#fff;font-weight:700}
+.ribbon .wrap{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:14px max(5vw,16px)}
+.meter{flex:1 1 220px;max-width:420px;height:12px;background:rgba(255,255,255,.3);border-radius:99px;overflow:hidden}
+.meter i{display:block;height:100%;background:#fff;border-radius:99px}
+/* fixtures */
+.head{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:26px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tabs button{min-height:44px;padding:0 18px;border-radius:999px;border:2px solid var(--line);background:var(--card);color:var(--ink);font:700 15px Barlow,sans-serif;cursor:pointer}
+.tabs button[aria-pressed=true]{background:var(--blue);border-color:var(--blue);color:#fff}
+.fixtures{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:14px}
+.fx{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;display:grid;gap:12px}
+.fx .meta{display:flex;justify-content:space-between;font-size:13px;color:var(--mute);font-weight:500}
+.fx .teams{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:10px}
+.fx .t{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;font-weight:700;font-size:15px;line-height:1.2}
+.fx .t:last-child{}
+.vs{font:800 22px "Barlow Condensed",sans-serif;color:var(--mute)}
+.badge{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;color:#fff;font:800 15px "Barlow Condensed",sans-serif;flex:none;box-shadow:inset 0 -4px 0 rgba(0,0,0,.2)}
+.tba{justify-self:center;font-size:13px;background:light-dark(#eef1ff,#1b2350);color:var(--mute);padding:4px 12px;border-radius:99px;white-space:nowrap}
+.note{font-size:14px;color:var(--mute);margin-top:16px}
+/* format */
+.format{background:var(--grass);color:#fff;background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 80px,transparent 80px 160px)}
+.format .lede{color:rgba(255,255,255,.88)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,200px),1fr));gap:12px;margin-top:28px}
+.set{background:rgba(0,0,0,.18);border-radius:14px;padding:16px 18px}
+.set small{display:block;opacity:.85;font-size:14px}
+.set b{font:800 28px "Barlow Condensed",sans-serif;line-height:1.1}
+.set.on b::after{content:" ✓";color:var(--gold)}
+/* clubs */
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.tools input{min-height:44px;font:16px Barlow,sans-serif;padding:0 16px;border-radius:999px;border:2px solid var(--line);background:var(--card);color:var(--ink);width:min(100%,280px)}
+.div-title{display:flex;align-items:center;gap:12px;margin:30px 0 14px}
+.div-title .pill{background:var(--blue);color:#fff;font:800 16px "Barlow Condensed",sans-serif;padding:4px 12px;border-radius:8px}
+.div-title small{color:var(--mute)}
+.clubs{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:12px}
+.club{display:flex;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.club b{display:block;line-height:1.2}.club small{color:var(--mute);font-size:14px}
+.club.open{border-style:dashed;background:transparent}
+.club.open .badge{background:transparent!important;border:2px dashed var(--line);color:var(--mute);box-shadow:none}
+.empty{color:var(--mute);padding:20px 0}
+/* tables */
+.tables{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:18px}
+.tbl{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.tbl h3{background:var(--deep);color:#fff;padding:14px 18px;font-size:22px}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{padding:9px 10px;text-align:right;white-space:nowrap}
+th{font-size:13px;color:var(--mute);font-weight:500;border-bottom:1px solid var(--line)}
+td{border-bottom:1px solid var(--line)}tr:last-child td{border-bottom:0}
+th:nth-child(2),td:nth-child(2){text-align:left;white-space:normal}
+td:first-child,th:first-child{width:32px;text-align:center;color:var(--mute)}
+td.pts{font-weight:700}
+/* join */
+.join{background:var(--deep);color:#fff}
+.join .lede{color:rgba(255,255,255,.82)}
+.roles{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));gap:14px;margin-top:28px}
+.role{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:20px}
+.role ul{margin:12px 0 0;padding-left:18px;color:rgba(255,255,255,.86)}
+.role .tag{display:inline-block;font-size:13px;font-weight:700;padding:3px 10px;border-radius:99px;background:var(--gold);color:#1a1300;margin-bottom:10px}
+.role .tag.closed{background:rgba(255,255,255,.2);color:#fff}
+.join .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+/* rules */
+.rules{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:14px;margin-top:26px}
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:4px 18px}
+summary{cursor:pointer;font:800 22px "Barlow Condensed",sans-serif;min-height:52px;display:flex;align-items:center;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";margin-left:auto;font-size:26px;color:var(--blue)}
+details[open] summary::after{content:"–"}
+details ol{margin:0 0 16px;padding-left:20px;color:var(--mute)}details li{margin:6px 0}
+footer{background:var(--blue2);color:#fff}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center;padding:28px max(5vw,16px)}
+footer small{opacity:.75}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr}.scene{max-width:560px;width:100%;justify-self:center}.facts{margin-bottom:8px}}
+@media(max-width:600px){.links{width:100%;margin-left:0;overflow-x:auto;flex-wrap:nowrap}.links a{flex:none}th,td{padding:8px 6px}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="crest" viewBox="0 0 100 100">
+      <path d="M50 4 90 27v46L50 96 10 73V27z" fill="#fff"/>
+      <path d="M50 11 84 31v38L50 89 16 69V31z" fill="#1537d6"/>
+      <path d="M50 11 84 31v8L50 19 16 39v-8z" fill="#3b63ff"/>
+      <circle cx="50" cy="35" r="8" fill="#ffd23f"/>
+      <text x="50" y="70" text-anchor="middle" font-family="Barlow Condensed,Impact,sans-serif" font-weight="800" font-size="26" fill="#fff">RSL</text>
+    </symbol>
+  </defs>
+</svg>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top"><svg><use href="#crest"/></svg>RSL</a>
+    <div class="links">
+      <a href="#fixtures">Fixtures</a>
+      <a href="#format">Format</a>
+      <a href="#clubs">Clubs</a>
+      <a href="#tables">Tables</a>
+      <a href="#join">Join</a>
+      <a href="#rules">Rules</a>
+      <a class="cta" href="https://discord.gg/ragdollsuperleague">Discord</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <h1>Ragdoll<span>Super League</span></h1>
+      <p>Three divisions, thirty clubs, one trophy each. The competitive league for Ragdoll Soccer on Roblox — 8-a-side, every matchweek, all season.</p>
+      <div class="actions">
+        <a class="btn primary" href="https://discord.gg/ragdollsuperleague">Join the Discord</a>
+        <a class="btn ghost" href="https://www.roblox.com/discover/?Keyword=Ragdoll%20Soccer">Play Ragdoll Soccer</a>
+      </div>
+      <div class="facts">
+        <div><b>3</b><small>divisions</small></div>
+        <div><b>30</b><small>club spots</small></div>
+        <div><b>15</b><small>players per squad</small></div>
+        <div><b>8v8</b><small>match format</small></div>
+      </div>
+    </div>
+    <div class="scene" aria-label="Illustration: ragdoll players on a floodlit pitch, one attempting a bicycle kick">
+      <svg viewBox="0 0 600 500">
+        <defs>
+          <linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#25b363"/><stop offset="1" stop-color="#157a42"/></linearGradient>
+          <radialGradient id="light" cx=".5" cy="0" r=".9"><stop offset="0" stop-color="#fff" stop-opacity=".45"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+          <g id="rd">
+            <!-- one ragdoll mannequin: round head, ball joints -->
+            <line x1="0" y1="-40" x2="0" y2="10" stroke="currentColor" stroke-width="16" stroke-linecap="round"/>
+            <circle cx="0" cy="-62" r="15" fill="#f1f3fb"/>
+            <circle cx="0" cy="-40" r="7" fill="#f1f3fb"/><circle cx="0" cy="10" r="7" fill="#f1f3fb"/>
+          </g>
+        </defs>
+        <!-- floodlight beams -->
+        <polygon points="60,0 140,0 330,360 40,360" fill="url(#light)" opacity=".5"/>
+        <polygon points="460,0 540,0 560,360 260,360" fill="url(#light)" opacity=".5"/>
+        <!-- stands -->
+        <path d="M0 230 Q300 170 600 230 V300 H0z" fill="#0f27a0"/>
+        <g fill="#3b63ff" opacity=".55">
+          <circle cx="40" cy="232" r="5"/><circle cx="80" cy="222" r="5"/><circle cx="120" cy="214" r="5"/><circle cx="160" cy="207" r="5"/><circle cx="200" cy="202" r="5"/><circle cx="240" cy="199" r="5"/><circle cx="360" cy="199" r="5"/><circle cx="400" cy="202" r="5"/><circle cx="440" cy="207" r="5"/><circle cx="480" cy="214" r="5"/><circle cx="520" cy="222" r="5"/><circle cx="560" cy="232" r="5"/>
+        </g>
+        <!-- pitch -->
+        <path d="M-20 290 Q300 255 620 290 V520 H-20z" fill="url(#g)"/>
+        <path d="M30 330 Q300 300 570 330" stroke="#fff" stroke-opacity=".45" stroke-width="3" fill="none"/>
+        <ellipse cx="300" cy="420" rx="120" ry="34" stroke="#fff" stroke-opacity=".45" stroke-width="3" fill="none"/>
+        <!-- goal -->
+        <g transform="translate(70 250)">
+          <rect x="0" y="0" width="150" height="80" fill="none" stroke="#fff" stroke-width="6"/>
+          <path d="M0 0 L20 -12 H170 L150 0 M170 -12 V70 L150 80" stroke="#fff" stroke-opacity=".6" stroke-width="3" fill="none"/>
+          <g stroke="#fff" stroke-opacity=".25" stroke-width="1.5"><line x1="25" y1="0" x2="25" y2="80"/><line x1="50" y1="0" x2="50" y2="80"/><line x1="75" y1="0" x2="75" y2="80"/><line x1="100" y1="0" x2="100" y2="80"/><line x1="125" y1="0" x2="125" y2="80"/><line x1="0" y1="27" x2="150" y2="27"/><line x1="0" y1="54" x2="150" y2="54"/></g>
+        </g>
+        <!-- keeper diving -->
+        <g transform="translate(170 300) rotate(-62)" color="#ff4d5e">
+          <ellipse cx="0" cy="40" rx="30" ry="5" fill="#000" opacity=".15" transform="rotate(62)"/>
+          <line x1="0" y1="-30" x2="-34" y2="-60" stroke="#ff4d5e" stroke-width="11" stroke-linecap="round"/>
+          <line x1="0" y1="-30" x2="30" y2="-58" stroke="#ff4d5e" stroke-width="11" stroke-linecap="round"/>
+          <line x1="0" y1="10" x2="-18" y2="48" stroke="#ff4d5e" stroke-width="12" stroke-linecap="round"/>
+          <line x1="0" y1="10" x2="20" y2="46" stroke="#ff4d5e" stroke-width="12" stroke-linecap="round"/>
+          <use href="#rd"/>
+        </g>
+        <!-- defender -->
+        <g transform="translate(470 400)" color="#ff4d5e">
+          <ellipse cx="0" cy="58" rx="34" ry="7" fill="#000" opacity=".18"/>
+          <line x1="0" y1="-32" x2="-30" y2="-6" stroke="#ff4d5e" stroke-width="11" stroke-linecap="round"/>
+          <line x1="0" y1="-32" x2="32" y2="-50" stroke="#ff4d5e" stroke-width="11" stroke-linecap="round"/>
+          <line x1="0" y1="10" x2="-16" y2="56" stroke="#1d2340" stroke-width="12" stroke-linecap="round"/>
+          <line x1="0" y1="10" x2="22" y2="54" stroke="#1d2340" stroke-width="12" stroke-linecap="round"/>
+          <use href="#rd"/>
+        </g>
+        <!-- striker: bicycle kick -->
+        <ellipse cx="330" cy="420" rx="60" ry="10" fill="#000" opacity=".2"/>
+        <g class="kick">
+          <g transform="translate(330 300) rotate(150)" color="#ffffff">
+            <line x1="0" y1="-32" x2="-34" y2="-14" stroke="#fff" stroke-width="11" stroke-linecap="round"/>
+            <line x1="0" y1="-32" x2="30" y2="-8" stroke="#fff" stroke-width="11" stroke-linecap="round"/>
+            <line x1="0" y1="10" x2="-10" y2="62" stroke="#1537d6" stroke-width="12" stroke-linecap="round"/>
+            <line x1="0" y1="10" x2="34" y2="48" stroke="#1537d6" stroke-width="12" stroke-linecap="round"/>
+            <line x1="0" y1="-40" x2="0" y2="10" stroke="#fff" stroke-width="16" stroke-linecap="round"/>
+            <circle cx="0" cy="-62" r="15" fill="#f1f3fb"/>
+            <circle cx="0" cy="-40" r="7" fill="#d9ddf0"/><circle cx="0" cy="10" r="7" fill="#d9ddf0"/>
+            <text x="0" y="-12" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="800" font-size="14" fill="#1537d6" transform="rotate(180 0 -16)">10</text>
+          </g>
+        </g>
+        <g class="ballf">
+          <circle cx="285" cy="205" r="14" fill="#fff"/>
+          <path d="M285 196 l7 5 -3 8 h-8 l-3 -8z" fill="#0b1233"/>
+          <path d="M310 212 q-10 -2 -18 -6 M312 222 q-12 -2 -20 -8" stroke="#fff" stroke-opacity=".7" stroke-width="3" fill="none" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<div class="ribbon">
+  <div class="wrap">
+    <span>Kick-off is locked in once the server reaches 400 members — invite your friends.</span>
+    <a class="btn primary" href="https://discord.gg/ragdollsuperleague" style="min-height:40px">Invite link</a>
+  </div>
+</div>
+
+<section class="band" id="fixtures">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <h2>Matchweek 1</h2>
+        <p class="lede">The opening round across all three divisions. Managers agree on a time in #manager-chat; the schedule is posted in #fixtures.</p>
+      </div>
+      <div class="tabs" id="fxTabs" role="group" aria-label="Filter fixtures by division"></div>
+    </div>
+    <div class="fixtures" id="fxList"></div>
+    <p class="note">Kick-off times appear here once both managers confirm.</p>
+  </div>
+</section>
+
+<section class="band format" id="format">
+  <div class="wrap">
+    <h2>How matches are played</h2>
+    <p class="lede">Every RSL match runs on the same private-server settings, so no one gets a home advantage.</p>
+    <div class="grid" id="settings"></div>
+  </div>
+</section>
+
+<section class="band" id="clubs">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <h2>The clubs</h2>
+        <p class="lede">Ten clubs per division, each run by one manager with a squad of up to 15. Dashed cards are open spots — claim one with a ticket in #support-tickets.</p>
+      </div>
+      <div class="tools">
+        <input id="q" type="search" placeholder="Search club or manager" aria-label="Search club or manager">
+        <div class="tabs" id="clubTabs" role="group" aria-label="Filter clubs by division"></div>
+      </div>
+    </div>
+    <div id="clubList"></div>
+  </div>
+</section>
+
+<section class="band" id="tables" style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <h2>League tables</h2>
+        <p class="lede">Win 3, draw 1, loss 0. Tables update after every matchweek.</p>
+      </div>
+    </div>
+    <div class="tables" id="tableList"></div>
+  </div>
+</section>
+
+<section class="band join" id="join">
+  <div class="wrap">
+    <h2>Get involved</h2>
+    <p class="lede">Play, manage, or help run the league. Every application starts with a ticket in #support-tickets.</p>
+    <div class="roles">
+      <div class="role"><span class="tag">Open</span><h3>Player</h3>
+        <ul><li>Join the Discord and post in #free-agents</li><li>Can’t find a club? Get scouted in the RSL Club Trials server through scrims</li><li>Squads go up to 15 players</li></ul></div>
+      <div class="role"><span class="tag">Open</span><h3>Club manager</h3>
+        <ul><li>5 or more players ready to sign</li><li>Active and competitive squad</li><li>Take over an open spot or a vacant club</li></ul></div>
+      <div class="role"><span class="tag">Open</span><h3>Staff</h3>
+        <ul><li>13 years old or older</li><li>Active in the server</li><li>Able to invite new members</li></ul></div>
+      <div class="role"><span class="tag">Open</span><h3>Media &amp; broadcast</h3>
+        <ul><li>Media team — post RSL videos and matches on socials</li><li>Commentators — English, Arabic or Spanish</li><li>Stats team — goals, assists, saves, results</li><li>Match streamers — stream games with a commentator</li></ul></div>
+    </div>
+    <div class="actions">
+      <a class="btn primary" href="https://discord.gg/ragdollsuperleague">Open a ticket on Discord</a>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="rules">
+  <div class="wrap">
+    <h2>Rules</h2>
+    <p class="lede">The short version. The full rulebook lives in #league-rules on Discord, and staff have the final word.</p>
+    <div class="rules">
+      <details open><summary>Matches</summary><ol>
+        <li>Matches are played on the official RSL server settings shown above.</li>
+        <li>Managers schedule their match together in #manager-chat before the matchweek deadline.</li>
+        <li>A draw at full time is settled by golden goal.</li>
+        <li>Results are reported to staff with a screenshot of the final score.</li></ol></details>
+      <details><summary>Squads &amp; transfers</summary><ol>
+        <li>Each club can register up to 15 players.</li>
+        <li>Signings and releases go through #contracts.</li>
+        <li>A player can only be registered to one club at a time.</li></ol></details>
+      <details><summary>Conduct</summary><ol>
+        <li>Respect opponents, staff and referees — in game and on Discord.</li>
+        <li>Exploits, scripts or alt accounts lead to a ban from the league.</li>
+        <li>Spam and mass mentions are removed and punished.</li></ol></details>
+      <details><summary>Managers</summary><ol>
+        <li>Managers must stay active; inactive managers can be replaced.</li>
+        <li>Open spots and vacant clubs are claimed through a ticket.</li></ol></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top"><svg><use href="#crest"/></svg>Ragdoll Super League</a>
+    <small>Fan-run league for Ragdoll Soccer on Roblox · Est. 2026 · Not affiliated with Roblox</small>
+  </div>
+</footer>
+
+<script>
+{
+const C = {"Brighton II":"#0057b8","Bayern Munich":"#dc052d","Real Madrid":"#c9a227","Aston Villa":"#7a1e48","Arsenal":"#ef0107","Manchester United":"#da291c","Fiorentina":"#5b2d8e",
+"Manchester City":"#6cabdd","Liverpool":"#c8102e","FC Barcelona":"#a50044","Napoli":"#0a84c9","Union Berlin":"#eb1923","Newcastle":"#241f20","Athletic Club":"#ee2523","Atlético Madrid":"#cb3524","Santos FC":"#333","Juventus FC":"#111",
+"Dortmund":"#e8b800","Palermo FC":"#d9718f","AFC Ajax":"#d2122e","Grêmio FBPA":"#0d80bf","VfB Stuttgart":"#e32219","Paris Saint-Germain":"#004170","AC Milan":"#c4001b","Leverkusen":"#e32221","Cerezo Osaka":"#d6006f","Chelsea":"#034694"};
+const DIVS = {
+1:[["Brighton II","Itay"],["Bayern Munich","veil"],["Real Madrid","vzr6k"],["Aston Villa","lyndon117"],["Arsenal","Arteta"],["Manchester United","Lukas"],["Fiorentina","FX | MLT20"],null,null,null],
+2:[["Manchester City","21"],["Liverpool","dedmagistr"],["FC Barcelona","Zul"],["Napoli","ummi benzi"],["Union Berlin","r4zvan"],["Newcastle","shiny bald egg gaffer"],["Athletic Club","K.SHU"],["Atlético Madrid","RAV3N"],["Santos FC","YOICHI"],["Juventus FC","Scout"]],
+3:[["Dortmund","junalbert6"],["Palermo FC","Camxron"],["AFC Ajax","tinsmithh"],["Grêmio FBPA","imkynnnn"],["VfB Stuttgart","petar"],["Paris Saint-Germain","Abro"],["AC Milan","Belli"],["Leverkusen","mahh_ddi"],["Cerezo Osaka","Rice"],["Chelsea","Abra the"]]};
+const FX = [[1,"Brighton II","Manchester United"],[1,"Bayern Munich","Arsenal"],[1,"Real Madrid","Aston Villa"],
+[2,"Manchester City","Newcastle"],[2,"Union Berlin","Liverpool"],[2,"FC Barcelona","Napoli"],
+[3,"Dortmund","Paris Saint-Germain"],[3,"Palermo FC","VfB Stuttgart"],[3,"AFC Ajax","Grêmio FBPA"]];
+const SETTINGS = [["Match length","20 min"],["Half-time","On",1],["Team size","8-a-side"],["Field size","Normal"],["Draw at full time","Golden goal"],["Fouls","On",1],["Red card length","45 sec"],["Offside","On",1],["VAR reviews","Off"],["Auto start","Off"]];
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const ini = n => n.replace(/^(FC|AFC|AC|VfB)\s/,"").split(/\s+/).map(w=>w[0]).join("").slice(0,3).toUpperCase();
+const badge = n => `<span class="badge" style="background:${C[n]||"#1537d6"}">${esc(ini(n))}</span>`;
+const tabs = (el, cb) => { const opts=[["all","All"],["1","Division 1"],["2","Division 2"],["3","Division 3"]];
+  el.innerHTML = opts.map(([v,l],i)=>`<button type="button" data-v="${v}" aria-pressed="${i===0}">${l}</button>`).join("");
+  el.addEventListener("click", e => { const b=e.target.closest("button"); if(!b) return;
+    el.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed", x===b)); cb(b.dataset.v); }); };
+
+// fixtures
+const fxList = document.getElementById("fxList");
+const drawFx = d => { fxList.innerHTML = FX.filter(f=>d==="all"||String(f[0])===d).map(([dv,h,a])=>`
+  <article class="fx"><div class="meta"><span>Division ${dv}</span><span>Matchweek 1</span></div>
+  <div class="teams"><div class="t">${badge(h)}${esc(h)}</div><span class="vs">VS</span><div class="t">${badge(a)}${esc(a)}</div></div>
+  <span class="tba">Kick-off to be scheduled</span></article>`).join(""); };
+tabs(document.getElementById("fxTabs"), drawFx); drawFx("all");
+
+// settings
+document.getElementById("settings").innerHTML = SETTINGS.map(([k,v,on])=>`<div class="set${on?" on":""}"><small>${k}</small><b>${v}</b></div>`).join("");
+
+// clubs
+let cDiv = "all";
+const q = document.getElementById("q"), clubList = document.getElementById("clubList");
+const drawClubs = () => { const term = q.value.trim().toLowerCase(); let html="";
+  for (const d of [1,2,3]) { if (cDiv!=="all" && String(d)!==cDiv) continue;
+    const list = DIVS[d].filter(c => !term || (c && (c[0]+" "+c[1]).toLowerCase().includes(term)));
+    if (!list.length) continue;
+    const filled = DIVS[d].filter(Boolean).length;
+    html += `<div class="div-title"><span class="pill">DIV ${d}</span><h3>Division ${d}</h3><small>${filled}/10 clubs</small></div><div class="clubs">` +
+      list.map(c => c ? `<div class="club">${badge(c[0])}<div><b>${esc(c[0])}</b><small>Manager · ${esc(c[1])}</small></div></div>`
+        : `<div class="club open"><span class="badge">+</span><div><b>Open spot</b><small>Claim it with a ticket</small></div></div>`).join("") + `</div>`; }
+  clubList.innerHTML = html || `<p class="empty">No club or manager matches “${esc(q.value)}”.</p>`; };
+q.addEventListener("input", drawClubs);
+tabs(document.getElementById("clubTabs"), v => { cDiv=v; drawClubs(); }); drawClubs();
+
+// tables
+document.getElementById("tableList").innerHTML = [1,2,3].map(d => `<div class="tbl"><h3>Division ${d}</h3><div class="scroll"><table>
+  <thead><tr><th>#</th><th>Club</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GD</th><th>Pts</th></tr></thead><tbody>` +
+  DIVS[d].filter(Boolean).map((c,i)=>`<tr><td>${i+1}</td><td>${esc(c[0])}</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>`).join("") +
+  `</tbody></table></div></div>`).join("");
+}
+</script>
+</body>
+</html>
