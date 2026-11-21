@@ -429,7 +429,7 @@ if(reduce){finish();}else{
 const K="https://kounter.kerolloz.dev/badge/ragdollsoccer.rsl.visitors";
 let owner=false;
 try{const p=new URLSearchParams(location.search);if(p.get("owner")==="rsl-itay-7731"){localStorage.setItem("rsl_owner","1");history.replaceState(null,"",location.pathname+location.hash);}owner=localStorage.getItem("rsl_owner")==="1";}catch(e){}
-if(owner){const v=document.getElementById("visits");v.hidden=false;v.innerHTML=`👁 Visitors <img alt="total visitors" src="${K}?silent=true&t=${Date.now()}">`;}
+if(owner){const v=document.getElementById("visits");v.hidden=false;v.innerHTML=`<img alt="total visitors" src="${K}?silent=true&label=Visitors&color=ffd23f&style=flat-square&t=${Date.now()}">`;}
 else{let seen=false;try{seen=localStorage.getItem("rsl_seen")==="1";}catch(e){}
   if(!seen){const i=new Image();i.src=`${K}?t=${Date.now()}`;try{localStorage.setItem("rsl_seen","1");}catch(e){}}}
 }
