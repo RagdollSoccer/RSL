@@ -169,6 +169,7 @@ footer small{opacity:.75}
 .join .wrap{position:relative;z-index:1}
 .ribbon .lg{width:30px;height:30px;margin-right:10px;vertical-align:middle}
 footer .lg{width:44px;height:44px}
+.visits{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:10px;background:rgba(255,255,255,.12);font-size:13px;font-weight:700;white-space:nowrap}.visits img{height:20px;display:block}.visits[hidden]{display:none}
 /* intro */
 #intro{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:radial-gradient(circle at 50% 45%,#2f5bff,#0f27a0 70%);transition:opacity .6s ease .1s}
 #intro.out{opacity:0;pointer-events:none}
@@ -207,6 +208,7 @@ footer .lg{width:44px;height:44px}
       <a href="#rules">Rules</a>
       <a class="cta" href="https://discord.gg/ragdollsuperleague">Discord</a>
     </div>
+    <span class="visits" id="visits" hidden></span>
   </div>
 </nav>
 
@@ -419,6 +421,17 @@ if(reduce){finish();}else{
     setTimeout(finish,500);},2500);
   setTimeout(finish,4500);
 }
+}
+</script>
+<script>
+{
+// visitor counter: counts each browser once; only the owner sees the total
+const K="https://kounter.kerolloz.dev/badge/ragdollsoccer.rsl.visitors";
+let owner=false;
+try{const p=new URLSearchParams(location.search);if(p.get("owner")==="rsl-itay-7731"){localStorage.setItem("rsl_owner","1");history.replaceState(null,"",location.pathname+location.hash);}owner=localStorage.getItem("rsl_owner")==="1";}catch(e){}
+if(owner){const v=document.getElementById("visits");v.hidden=false;v.innerHTML=`👁 Visitors <img alt="total visitors" src="${K}?silent=true&t=${Date.now()}">`;}
+else{let seen=false;try{seen=localStorage.getItem("rsl_seen")==="1";}catch(e){}
+  if(!seen){const i=new Image();i.src=`${K}?t=${Date.now()}`;try{localStorage.setItem("rsl_seen","1");}catch(e){}}}
 }
 </script>
 </body>
