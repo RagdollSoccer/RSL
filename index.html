@@ -349,6 +349,8 @@ const DIVS = {
 const FX = [[1,"Brighton II","Manchester United"],[1,"Bayern Munich","Arsenal"],[1,"Real Madrid","Aston Villa"],
 [2,"Manchester City","Newcastle"],[2,"Union Berlin","Liverpool"],[2,"FC Barcelona","Napoli"],
 [3,"Dortmund","Paris Saint-Germain"],[3,"Palermo FC","VfB Stuttgart"],[3,"AFC Ajax","Grêmio FBPA"]];
+// points: update after each matchweek, e.g. "Arsenal":3
+const PTS = {};
 const SETTINGS = [["Match length","20 min"],["Half-time","On",1],["Team size","8-a-side"],["Field size","Normal"],["Draw at full time","Golden goal"],["Fouls","On",1],["Red card length","45 sec"],["Offside","On",1],["VAR reviews","Off"],["Auto start","Off"]];
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -388,8 +390,8 @@ tabs(document.getElementById("clubTabs"), v => { cDiv=v; drawClubs(); }); drawCl
 
 // tables
 document.getElementById("tableList").innerHTML = [1,2,3].map(d => `<div class="tbl"><h3><span class="lg"></span>Division ${d}</h3><div class="scroll"><table>
-  <thead><tr><th>#</th><th>Club</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GD</th><th>Pts</th></tr></thead><tbody>` +
-  DIVS[d].filter(Boolean).map((c,i)=>`<tr><td>${i+1}</td><td>${esc(c[0])}</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>`).join("") +
+  <thead><tr><th>#</th><th>Club</th><th>Pts</th></tr></thead><tbody>` +
+  DIVS[d].filter(Boolean).map((c,i)=>[c[0],PTS[c[0]]||0,i]).sort((a,b)=>b[1]-a[1]||a[2]-b[2]).map(([n,p],i)=>`<tr><td>${i+1}</td><td>${esc(n)}</td><td class="pts">${p}</td></tr>`).join("") +
   `</tbody></table></div></div>`).join("");
 
 // intro
