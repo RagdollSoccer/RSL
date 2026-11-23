@@ -100,7 +100,7 @@ nav .wrap{display:flex;align-items:center;gap:18px;padding:10px max(5vw,16px);fl
 .fx .teams{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:10px}
 .fx .t{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;font-weight:700;font-size:15px;line-height:1.2}
 .fx .t:last-child{}
-.vs{font:800 22px "Barlow Condensed",sans-serif;color:var(--mute)}
+.vs{font:800 22px "Barlow Condensed",sans-serif;color:var(--mute)}.score{font:800 34px "Barlow Condensed",sans-serif;color:var(--ink);white-space:nowrap}.tba.ft{background:var(--blue);color:#fff}.bm em b{color:#fff;font-size:15px}
 .badge{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;color:#fff;font:800 15px "Barlow Condensed",sans-serif;flex:none;box-shadow:inset 0 -4px 0 rgba(0,0,0,.2)}
 .tba{justify-self:center;font-size:13px;background:light-dark(#eef1ff,#1b2350);color:var(--mute);padding:4px 12px;border-radius:99px;white-space:nowrap}
 .note{font-size:14px;color:var(--mute);margin-top:16px}
@@ -206,7 +206,7 @@ footer .lg{width:44px;height:44px}
       <a href="#tables">Tables</a>
       <a href="#join">Join</a>
       <a href="#rules">Rules</a>
-      <a class="cta" href="https://discord.gg/ragdollsuperleague">Discord</a>
+      <a class="cta" href="https://discord.gg/2HEFDX6GGb">Discord</a>
     </div>
     <span class="visits" id="visits" hidden></span>
   </div>
@@ -222,7 +222,7 @@ footer .lg{width:44px;height:44px}
         <h1><span>Ragdoll</span><span class="y">Super</span><span>League</span></h1>
         <p>The football league for Ragdoll Soccer on Roblox. Three divisions, one title each.</p>
         <div class="actions">
-          <a class="btn primary" href="https://discord.gg/ragdollsuperleague">Join the Discord</a>
+          <a class="btn primary" href="https://discord.gg/2HEFDX6GGb">Join the Discord</a>
           <a class="btn ghost" href="https://www.roblox.com/discover/?Keyword=Ragdoll%20Soccer">Play the game</a>
         </div>
       </div>
@@ -242,8 +242,8 @@ footer .lg{width:44px;height:44px}
 
 <div class="ribbon">
   <div class="wrap">
-    <span><span class="lg"></span>All 30 club spots are taken — Matchweek 1 kicks off on 22 November.</span>
-    <a class="btn primary" href="https://discord.gg/ragdollsuperleague" style="min-height:40px">Invite link</a>
+    <span><span class="lg"></span>1,000 members and counting — Matchweek 1 is underway. Watch games live on the League Matches stage.</span>
+    <a class="btn primary" href="https://discord.gg/2HEFDX6GGb" style="min-height:40px">Invite link</a>
   </div>
 </div>
 
@@ -252,7 +252,7 @@ footer .lg{width:44px;height:44px}
     <div class="head">
       <div>
         <h2><span class="lg mark"></span>Matchweek 1</h2>
-        <p class="lede">The opening round across all three divisions. Managers agree on a time in #manager-chat; the schedule is posted in #fixtures.</p>
+        <p class="lede">The opening round across all three divisions. Managers agree on a time in #manager-chat; the schedule is posted in #fixtures-div-1, -2 and -3.</p>
       </div>
       <div class="tabs" id="fxTabs" role="group" aria-label="Filter fixtures by division"></div>
     </div>
@@ -312,7 +312,7 @@ footer .lg{width:44px;height:44px}
         <ul><li>Media team — post RSL videos and matches on socials</li><li>Commentators — English, Arabic or Spanish</li><li>Stats team — goals, assists, saves, results</li><li>Match streamers — stream games with a commentator</li></ul></div>
     </div>
     <div class="actions">
-      <a class="btn primary" href="https://discord.gg/ragdollsuperleague">Open a ticket on Discord</a>
+      <a class="btn primary" href="https://discord.gg/2HEFDX6GGb">Open a ticket on Discord</a>
     </div>
   </div>
 </section>
@@ -356,15 +356,15 @@ const C = {"Brighton":"#0057b8","Bayern Munich":"#dc052d","Real Madrid":"#c9a227
 "Dortmund":"#e8b800","Palermo FC":"#d9718f","AFC Ajax":"#d2122e","Grêmio FBPA":"#0d80bf","VfB Stuttgart":"#e32219","Paris Saint-Germain":"#004170","AC Milan":"#c4001b","Leverkusen":"#e32221","Cerezo Osaka":"#d6006f","Chelsea":"#034694"};
 const DIVS = {
 1:[["Brighton","Itay"],["Bayern Munich","veil"],["Real Madrid","vzr6k"],["Aston Villa","lyndon117"],["Arsenal","Arteta"],["Manchester United","Lukas"],["Fiorentina","FX | MLT20"],["Real Betis","Rose"],["Real Sociedad","Monkey•D•Jary"],["Al-Nassr","junalbert6"]],
-2:[["Manchester City","21"],["Liverpool","FX | MLT20"],["FC Barcelona","Zul"],["Napoli","ummi benzi"],["Union Berlin","r4zvan"],["Newcastle","shiny bald egg gaffer"],["Athletic Club","K.SHU"],["Atlético Madrid","RAV3N"],["Santos FC","YOICHI"],["Juventus FC","Scout"]],
+2:[["Manchester City","21"],["Liverpool","FX | MLT20"],["FC Barcelona","Zul"],["Napoli","ykbenzii"],["Union Berlin","r4zvan"],["Newcastle","shiny bald egg gaffer"],["Athletic Club","K.SHU"],["Atlético Madrid","RAV3N"],["Santos FC","YOICHI"],["Juventus FC","Scout"]],
 3:[["Dortmund","cloud"],["Palermo FC","Camxron"],["AFC Ajax","tinsmithh"],["Grêmio FBPA","imkynnnn"],["VfB Stuttgart","petar"],["Paris Saint-Germain","Abro"],["AC Milan","Belli"],["Leverkusen","mahh_ddi"],["Cerezo Osaka","Rice"],["Chelsea","Abra the"]]};
-const FX = [[1,"Brighton","Manchester United","2026-11-22T16:00"],[1,"Bayern Munich","Arsenal","2026-11-22T17:00"],[1,"Real Madrid","Aston Villa","2026-11-22T18:00"],[1,"Fiorentina","Real Betis","2026-11-22T19:00"],[1,"Real Sociedad","Al-Nassr","2026-11-22T20:00"],
-[2,"Manchester City","Newcastle","2026-11-23T16:00"],[2,"Union Berlin","Liverpool","2026-11-23T17:00"],[2,"Santos FC","Juventus FC","2026-11-23T18:00"],[2,"FC Barcelona","Napoli","2026-11-23T21:30"],[2,"Atlético Madrid","Athletic Club","2026-11-23T22:00"],
-[3,"Dortmund","Paris Saint-Germain","2026-11-25T16:00"],[3,"Palermo FC","VfB Stuttgart","2026-11-25T18:00"],[3,"AFC Ajax","Grêmio FBPA","2026-11-25T20:00"],[3,"AC Milan","Chelsea","2026-11-25T21:00"],[3,"Leverkusen","Cerezo Osaka","2026-11-25T22:00"]];
+const FX = [[1,"Brighton","Manchester United","2026-11-22T16:00","3-0","FFT"],[1,"Bayern Munich","Arsenal","2026-11-22T17:00","3-3"],[1,"Real Madrid","Aston Villa","2026-11-22T18:00","4-6"],[1,"Fiorentina","Real Betis","2026-11-28T22:00"],[1,"Real Sociedad","Al-Nassr","2026-11-22T20:00","4-7"],
+[2,"Manchester City","Newcastle","2026-11-27T18:00"],[2,"Union Berlin","Liverpool","2026-11-27T19:00"],[2,"Santos FC","Juventus FC","2026-11-27T13:50"],[2,"FC Barcelona","Napoli","2026-11-23T21:30","5-3"],[2,"Atlético Madrid","Athletic Club","2026-11-27T22:00"],
+[3,"Dortmund","Paris Saint-Germain","2026-11-25T21:15"],[3,"Palermo FC","VfB Stuttgart","2026-11-25T18:00"],[3,"AFC Ajax","Grêmio FBPA","2026-11-25T20:00"],[3,"AC Milan","Chelsea","2026-11-25T21:00"],[3,"Leverkusen","Cerezo Osaka","2026-11-25T22:00"]];
 // kick-off times are Israel time (UTC+2); shown in each visitor's own time zone
 const KO = s => { const d=new Date(s+":00+02:00"); return { long:d.toLocaleString("en-GB",{weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}), short:d.toLocaleString("en-GB",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}) }; };
 // points: update after each matchweek, e.g. "Arsenal":3
-const PTS = {};
+const PTS = {"Brighton":3,"Bayern Munich":1,"Aston Villa":3,"Arsenal":1,"Fiorentina":3,"Al-Nassr":3,"FC Barcelona":3};
 const SETTINGS = [["Match length","20 min"],["Half-time","On",1],["Team size","8-a-side"],["Field size","Normal"],["Draw at full time","Golden goal"],["Fouls","On",1],["Red card length","45 sec"],["Offside","On",1],["VAR reviews","Off"],["Auto start","Off"]];
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -377,12 +377,12 @@ const tabs = (el, cb) => { const opts=[["all","All"],["1","Division 1"],["2","Di
 
 // fixtures
 const fxList = document.getElementById("fxList");
-const drawFx = d => { fxList.innerHTML = FX.filter(f=>d==="all"||String(f[0])===d).map(([dv,h,a,t])=>`
+const drawFx = d => { fxList.innerHTML = FX.filter(f=>d==="all"||String(f[0])===d).map(([dv,h,a,t,s,n])=>`
   <article class="fx"><div class="meta"><span><span class="lg"></span>Division ${dv}</span><span>Matchweek 1</span></div>
-  <div class="teams"><div class="t">${badge(h)}${esc(h)}</div><span class="vs">VS</span><div class="t">${badge(a)}${esc(a)}</div></div>
-  <span class="tba">${KO(t).long}</span></article>`).join(""); };
+  <div class="teams"><div class="t">${badge(h)}${esc(h)}</div>${s?`<span class="score">${s}</span>`:`<span class="vs">VS</span>`}<div class="t">${badge(a)}${esc(a)}</div></div>
+  <span class="tba${s?" ft":""}">${s?"Full time"+(n?" · "+n:""):KO(t).long}</span></article>`).join(""); };
 tabs(document.getElementById("fxTabs"), drawFx); drawFx("all");
-document.getElementById("upGrid").innerHTML=[1,2,3].map(d=>`<div class="bcol"><h4>Division ${d}</h4>`+FX.filter(f=>f[0]===d).map(([,a,b,t])=>`<div class="bm"><span><i style="background:${C[a]}"></i>${esc(a)}</span><em>${KO(t).short}</em><span>${esc(b)}<i style="background:${C[b]}"></i></span></div>`).join("")+`</div>`).join("");
+document.getElementById("upGrid").innerHTML=[1,2,3].map(d=>`<div class="bcol"><h4>Division ${d}</h4>`+FX.filter(f=>f[0]===d).map(([,a,b,t,s])=>`<div class="bm"><span><i style="background:${C[a]}"></i>${esc(a)}</span><em>${s?`<b>${s}</b>`:KO(t).short}</em><span>${esc(b)}<i style="background:${C[b]}"></i></span></div>`).join("")+`</div>`).join("");
 
 // settings
 document.getElementById("settings").innerHTML = SETTINGS.map(([k,v,on])=>`<div class="set${on?" on":""}"><small>${k}</small><b>${v}</b></div>`).join("");
