@@ -257,7 +257,7 @@ footer .lg{width:44px;height:44px}
       <div class="tabs" id="fxTabs" role="group" aria-label="Filter fixtures by division"></div>
     </div>
     <div class="fixtures" id="fxList"></div>
-    <p class="note">Times are shown in your own time zone. Managers can ask for a different time in #manager-chat.</p>
+    <p class="note">All kick-off times are Israel time (GMT+2). Managers can ask for a different time in #manager-chat.</p>
   </div>
 </section>
 
@@ -361,8 +361,8 @@ const DIVS = {
 const FX = [[1,"Brighton","Manchester United","2026-11-22T16:00","3-0","FFT"],[1,"Bayern Munich","Arsenal","2026-11-22T17:00","3-3"],[1,"Real Madrid","Aston Villa","2026-11-22T18:00","4-6"],[1,"Fiorentina","Real Betis","2026-11-28T22:00"],[1,"Real Sociedad","Al-Nassr","2026-11-22T20:00","4-7"],
 [2,"Manchester City","Newcastle","2026-11-27T18:00"],[2,"Union Berlin","Liverpool","2026-11-27T19:00"],[2,"Santos FC","Juventus FC","2026-11-27T13:50"],[2,"FC Barcelona","Napoli","2026-11-23T21:30","5-3"],[2,"Atlético Madrid","Athletic Club","2026-11-27T22:00"],
 [3,"Dortmund","Paris Saint-Germain","2026-11-25T21:15"],[3,"Palermo FC","VfB Stuttgart","2026-11-25T18:00"],[3,"AFC Ajax","Grêmio FBPA","2026-11-25T20:00"],[3,"AC Milan","Chelsea","2026-11-25T21:00"],[3,"Leverkusen","Cerezo Osaka","2026-11-25T22:00"]];
-// kick-off times are Israel time (UTC+2); shown in each visitor's own time zone
-const KO = s => { const d=new Date(s+":00+02:00"); return { long:d.toLocaleString("en-GB",{weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}), short:d.toLocaleString("en-GB",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}) }; };
+// kick-off times are Israel time (GMT+2) and are shown as-is for everyone
+const KO = s => { const d=new Date(s+":00Z"), o={timeZone:"UTC",hour:"2-digit",minute:"2-digit",hour12:false}; return { long:d.toLocaleString("en-GB",{...o,weekday:"short",day:"numeric",month:"short"})+" GMT+2", short:d.toLocaleString("en-GB",{...o,day:"numeric",month:"short"}) }; };
 // points: update after each matchweek, e.g. "Arsenal":3
 const PTS = {"Brighton":3,"Bayern Munich":1,"Aston Villa":3,"Arsenal":1,"Fiorentina":3,"Al-Nassr":3,"FC Barcelona":3};
 const SETTINGS = [["Match length","20 min"],["Half-time","On",1],["Team size","8-a-side"],["Field size","Normal"],["Draw at full time","Golden goal"],["Fouls","On",1],["Red card length","45 sec"],["Offside","On",1],["VAR reviews","Off"],["Auto start","Off"]];
