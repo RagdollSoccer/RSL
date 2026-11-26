@@ -362,9 +362,10 @@ const DIVS = {
 4:[["Inter Milan","SPION"],["Wrexham","Void"],["Roma","Solmour ༒"],["Villarreal","Redactz"],["Getafe","Miquel"],["Inter Miami","Kiyora"],["FC Copenhagen","Loki"],["Viking FK","Gio"],["Al-Hilal","fawaz"],["Sparta Rotterdam","Luke"],["RB Leipzig","XNO"],["FC Porto","el dupe"]]};
 const FX = [[1,"Beşiktaş","Manchester United","2026-11-22T16:00","3-0","FFT"],[1,"Bayern Munich","Arsenal","2026-11-22T17:00","3-3"],[1,"Real Madrid","Aston Villa","2026-11-22T18:00","4-6"],[1,"Fiorentina","Beitar Jerusalem","2026-11-28T22:00"],[1,"Real Sociedad","Al-Nassr","2026-11-22T20:00","4-7"],
 [2,"Manchester City","Newcastle","2026-11-27T18:00"],[2,"Union Berlin","Liverpool","2026-11-27T19:00"],[2,"Santos FC","Juventus FC","2026-11-27T13:50"],[2,"FC Barcelona","Napoli","2026-11-23T21:30","5-3"],[2,"Atlético Madrid","Athletic Club","2026-11-27T22:00"],
-[3,"Dortmund","Paris Saint-Germain","2026-11-25T21:15","11-10"],[3,"Palermo FC","VfB Stuttgart","2026-11-25T18:00","0-3","FFT"],[3,"AFC Ajax","Kerala Blasters FC","2026-11-25T20:00","10-0"],[3,"AC Milan","Chelsea","2026-11-25T21:00","3-7"],[3,"Leverkusen","Cerezo Osaka","2026-11-25T19:30","4-8"]];
+[3,"Dortmund","Paris Saint-Germain","2026-11-25T21:15","11-10"],[3,"Palermo FC","VfB Stuttgart","2026-11-25T18:00","0-3","FFT"],[3,"AFC Ajax","Kerala Blasters FC","2026-11-25T20:00","10-0"],[3,"AC Milan","Chelsea","2026-11-25T21:00","3-7"],[3,"Leverkusen","Cerezo Osaka","2026-11-25T19:30","4-8"],
+[4,"Inter Milan","Sparta Rotterdam",""],[4,"Wrexham","FC Porto",""],[4,"Roma","Viking FK",""],[4,"Villarreal","Al-Hilal",""],[4,"Getafe","RB Leipzig",""],[4,"Inter Miami","FC Copenhagen",""]];
 // kick-off times are Israel time (GMT+2) and are shown as-is for everyone
-const KO = s => { const d=new Date(s+":00Z"), o={timeZone:"UTC",hour:"2-digit",minute:"2-digit",hour12:false}; return { long:d.toLocaleString("en-GB",{...o,weekday:"short",day:"numeric",month:"short"})+" GMT+2", short:d.toLocaleString("en-GB",{...o,day:"numeric",month:"short"}) }; };
+const KO = s => { if(!s) return {long:"Time TBA",short:"TBA"}; const d=new Date(s+":00Z"), o={timeZone:"UTC",hour:"2-digit",minute:"2-digit",hour12:false}; return { long:d.toLocaleString("en-GB",{...o,weekday:"short",day:"numeric",month:"short"})+" GMT+2", short:d.toLocaleString("en-GB",{...o,day:"numeric",month:"short"}) }; };
 // points: update after each matchweek, e.g. "Arsenal":3
 const PTS = {"Beşiktaş":3,"Bayern Munich":1,"Aston Villa":3,"Arsenal":1,"Al-Nassr":3,"FC Barcelona":3,"Dortmund":3,"AFC Ajax":3,"VfB Stuttgart":3,"Cerezo Osaka":3,"Chelsea":3};
 const SETTINGS = [["Match length","20 min"],["Half-time","On",1],["Team size","8-a-side"],["Field size","Normal"],["Draw at full time","Golden goal"],["Fouls","On",1],["Red card length","45 sec"],["Offside","On",1],["VAR reviews","Off"],["Auto start","Off"]];
@@ -382,9 +383,9 @@ const fxList = document.getElementById("fxList");
 const drawFx = d => { fxList.innerHTML = FX.filter(f=>d==="all"||String(f[0])===d).map(([dv,h,a,t,s,n])=>`
   <article class="fx"><div class="meta"><span><span class="lg"></span>Division ${dv}</span><span>Matchweek 1</span></div>
   <div class="teams"><div class="t">${badge(h)}${esc(h)}</div>${s?`<span class="score">${s}</span>`:`<span class="vs">VS</span>`}<div class="t">${badge(a)}${esc(a)}</div></div>
-  <span class="tba${s?" ft":""}">${s?"Full time"+(n?" · "+n:""):KO(t).long}</span></article>`).join("") + (d==="4"||d==="all" ? `<article class="fx"><div class="meta"><span><span class="lg"></span>Division 4</span><span>Matchweek 1</span></div><div class="teams"><div class="t">12 new clubs</div><span class="vs">TBA</span><div class="t">Fixtures soon</div></div><span class="tba">Fixtures will be posted in #fixtures-div-4</span></article>` : ""); };
+  <span class="tba${s?" ft":""}">${s?"Full time"+(n?" · "+n:""):KO(t).long}</span></article>`).join(""); };
 tabs(document.getElementById("fxTabs"), drawFx); drawFx("all");
-document.getElementById("upGrid").innerHTML=[1,2,3,4].map(d=>`<div class="bcol"><h4>Division ${d}</h4>`+FX.filter(f=>f[0]===d).map(([,a,b,t,s])=>`<div class="bm"><span><i style="background:${C[a]}"></i>${esc(a)}</span><em>${s?`<b>${s}</b>`:KO(t).short}</em><span>${esc(b)}<i style="background:${C[b]}"></i></span></div>`).join("")+(d===4?`<div class="bm"><span>Fixtures coming soon</span></div>`:"")+`</div>`).join("");
+document.getElementById("upGrid").innerHTML=[1,2,3,4].map(d=>`<div class="bcol"><h4>Division ${d}</h4>`+FX.filter(f=>f[0]===d).map(([,a,b,t,s])=>`<div class="bm"><span><i style="background:${C[a]}"></i>${esc(a)}</span><em>${s?`<b>${s}</b>`:KO(t).short}</em><span>${esc(b)}<i style="background:${C[b]}"></i></span></div>`).join("")+`</div>`).join("");
 
 // settings
 document.getElementById("settings").innerHTML = SETTINGS.map(([k,v,on])=>`<div class="set${on?" on":""}"><small>${k}</small><b>${v}</b></div>`).join("");
