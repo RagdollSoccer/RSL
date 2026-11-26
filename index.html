@@ -76,13 +76,23 @@ nav .wrap{display:flex;align-items:center;gap:18px;padding:10px max(5vw,16px);fl
 .board .bh b{font:800 24px "Barlow Condensed",sans-serif;letter-spacing:.02em}
 .board .bh .live{width:9px;height:9px;border-radius:50%;background:var(--coral);box-shadow:0 0 0 4px rgba(255,77,94,.25)}
 .board .bh a{margin-left:auto;color:var(--gold);font-weight:700;font-size:15px}
+.bm{display:grid;grid-template-columns:minmax(0,1fr) 54px minmax(0,1fr);align-items:center;gap:6px;height:48px;border-top:1px solid rgba(255,255,255,.08);font-weight:700;font-size:13px}
+.bm>span{display:flex;align-items:center;gap:6px;min-width:0}
+.bm>span:last-child{justify-content:flex-end}
+.bm .n{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bm i{width:10px;height:10px;border-radius:3px;flex:none}
+.bm em{font-style:normal;text-align:center;line-height:1.15;background:rgba(255,255,255,.07);border-radius:8px;padding:5px 0}
+.bm em b{display:block;color:#fff;font-size:14px}
+.bm em small{display:block;font-size:10.5px;color:#9fb6ff;font-weight:600}
+.bm em.ft{background:rgba(255,210,63,.12)}.bm em.ft b{color:var(--gold);font-size:16px}
+.board .bh .tz{font-size:12px;font-weight:700;color:#9fb6ff;background:rgba(255,255,255,.08);padding:4px 10px;border-radius:999px}
 .bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:10px}
 .bcol{background:rgba(255,255,255,.06);border-radius:12px;padding:10px 12px}
 .bcol h4{margin:0 0 6px;font:800 15px "Barlow Condensed",sans-serif;color:#9fb6ff}
-.bm{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:8px;padding:7px 0;border-top:1px solid rgba(255,255,255,.08);font-weight:700;font-size:14px}
-.bm span{display:flex;align-items:center;gap:7px;min-width:0}.bm span:last-child{justify-content:flex-end;text-align:right}
-.bm i{width:14px;height:14px;border-radius:4px;flex:none}
-.bm em{font-style:normal;font-size:12px;color:#9fb6ff;text-align:center;line-height:1.25;white-space:nowrap}
+
+
+
+
 .hero-wrap{background:var(--bg);padding:0 max(5vw,16px) clamp(24px,3vw,40px)}
 /* status ribbon */
 .ribbon{background:var(--coral);color:#fff;font-weight:700}
@@ -100,7 +110,7 @@ nav .wrap{display:flex;align-items:center;gap:18px;padding:10px max(5vw,16px);fl
 .fx .teams{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:10px}
 .fx .t{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;font-weight:700;font-size:15px;line-height:1.2}
 .fx .t:last-child{}
-.vs{font:800 22px "Barlow Condensed",sans-serif;color:var(--mute)}.score{font:800 34px "Barlow Condensed",sans-serif;color:var(--ink);white-space:nowrap}.tba.ft{background:var(--blue);color:#fff}.bm em b{color:#fff;font-size:15px}.bm em b.kt{font-size:13px}.bm em small{font-size:10px;opacity:.8}
+.vs{font:800 22px "Barlow Condensed",sans-serif;color:var(--mute)}.score{font:800 34px "Barlow Condensed",sans-serif;color:var(--ink);white-space:nowrap}.tba.ft{background:var(--blue);color:#fff}
 .badge{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;color:#fff;font:800 15px "Barlow Condensed",sans-serif;flex:none;box-shadow:inset 0 -4px 0 rgba(0,0,0,.2)}
 .tba{justify-self:center;font-size:13px;background:light-dark(#eef1ff,#1b2350);color:var(--mute);padding:4px 12px;border-radius:99px;white-space:nowrap}
 .note{font-size:14px;color:var(--mute);margin-top:16px}
@@ -254,7 +264,7 @@ footer .lg{width:44px;height:44px}
 </header>
 <div class="hero-wrap">
   <div class="board">
-    <div class="bh"><span class="live"></span><b>MATCHWEEK 1</b><a href="#fixtures">Full fixtures →</a></div>
+    <div class="bh"><span class="live"></span><b>MATCHWEEK 1</b><span class="tz">All times GMT+2</span><a href="#fixtures">Full fixtures →</a></div>
     <div class="bgrid" id="upGrid"></div>
   </div>
 </div>
@@ -408,7 +418,7 @@ const FX = [[1,"Beşiktaş","Manchester United","2026-11-22T16:00","3-0","FFT"],
 [3,"Dortmund","Paris Saint-Germain","2026-11-25T21:15","11-10"],[3,"Palermo FC","VfB Stuttgart","2026-11-25T18:00","0-3","FFT"],[3,"AFC Ajax","Kerala Blasters FC","2026-11-25T20:00","10-0"],[3,"AC Milan","Chelsea","2026-11-25T21:00","3-7"],[3,"Leverkusen","Cerezo Osaka","2026-11-25T19:30","4-8"],
 [4,"Inter Milan","Sparta Rotterdam","2026-11-28T20:00"],[4,"Wrexham","FC Porto","2026-11-28T17:00"],[4,"Roma","Viking FK","2026-11-28T16:00"],[4,"Villarreal","Al-Hilal","2026-11-28T19:00"],[4,"Getafe","RB Leipzig","2026-11-28T18:00"],[4,"Inter Miami","FC Copenhagen","2026-11-28T23:00"]];
 // kick-off times are Israel time (GMT+2) and are shown as-is for everyone
-const KO = s => { if(!s) return {long:"Time TBA",short:"TBA"}; const d=new Date(s+":00Z"), o={timeZone:"UTC",hour:"2-digit",minute:"2-digit",hour12:false}; return { long:d.toLocaleString("en-GB",{...o,weekday:"short",day:"numeric",month:"short"})+" GMT+2", short:d.toLocaleString("en-GB",{timeZone:"UTC",day:"numeric",month:"short"})+"<br><b class=\"kt\">"+d.toLocaleString("en-GB",o)+"</b><br><small>GMT+2</small>" }; };
+const KO = s => { if(!s) return {long:"Time TBA",short:"<b>TBA</b><small>time</small>"}; const d=new Date(s+":00Z"), o={timeZone:"UTC",hour:"2-digit",minute:"2-digit",hour12:false}; return { long:d.toLocaleString("en-GB",{...o,weekday:"short",day:"numeric",month:"short"})+" GMT+2", short:"<b>"+d.toLocaleString("en-GB",o)+"</b><small>"+d.toLocaleString("en-GB",{timeZone:"UTC",day:"numeric",month:"short"})+"</small>" }; };
 // points: update after each matchweek, e.g. "Arsenal":3
 const PTS = {"Beşiktaş":3,"Bayern Munich":1,"Aston Villa":3,"Arsenal":1,"Al-Nassr":3,"FC Barcelona":3,"Dortmund":3,"AFC Ajax":3,"VfB Stuttgart":3,"Cerezo Osaka":3,"Chelsea":3};
 const SETTINGS = [["Match length","15 min"],["Half-time","On",1],["Team size","8-a-side"],["Field size","Bigger (+25%)"],["Draw at full time","Stays a draw"],["Fouls & cards","On",1],["Red card","Rest of match"],["Offside","On",1],["VAR reviews","On",1],["Late arrival","10 min max"]];
@@ -428,7 +438,8 @@ const drawFx = d => { fxList.innerHTML = FX.filter(f=>d==="all"||String(f[0])===
   <div class="teams"><div class="t">${badge(h)}${esc(h)}</div>${s?`<span class="score">${s}</span>`:`<span class="vs">VS</span>`}<div class="t">${badge(a)}${esc(a)}</div></div>
   <span class="tba${s?" ft":""}">${s?"Full time"+(n?" · "+n:""):KO(t).long}</span></article>`).join(""); };
 tabs(document.getElementById("fxTabs"), drawFx); drawFx("all");
-document.getElementById("upGrid").innerHTML=[1,2,3,4].map(d=>`<div class="bcol"><h4>Division ${d}</h4>`+FX.filter(f=>f[0]===d).map(([,a,b,t,s])=>`<div class="bm"><span><i style="background:${C[a]}"></i>${esc(a)}</span><em>${s?`<b>${s}</b>`:KO(t).short}</em><span>${esc(b)}<i style="background:${C[b]}"></i></span></div>`).join("")+`</div>`).join("");
+const SHORT={"Manchester United":"Man United","Manchester City":"Man City","Paris Saint-Germain":"PSG","Beitar Jerusalem":"Beitar","Kerala Blasters FC":"Kerala","Cerezo Osaka":"Cerezo","Inter Miami":"Inter Miami","FC Copenhagen":"Copenhagen","Atlético Madrid":"Atlético","Juventus FC":"Juventus","VfB Stuttgart":"Stuttgart","Bayern Munich":"Bayern","FC Barcelona":"Barcelona","Santos FC":"Santos","Sparta Rotterdam":"Sparta","Real Sociedad":"Sociedad","Athletic Club":"Athletic","Union Berlin":"Union Berlin"};const SN=n=>SHORT[n]||n;
+document.getElementById("upGrid").innerHTML=[1,2,3,4].map(d=>`<div class="bcol"><h4>Division ${d}</h4>`+FX.filter(f=>f[0]===d).map(([,a,b,t,s])=>`<div class="bm"><span><i style="background:${C[a]}"></i><span class="n">${esc(SN(a))}</span></span><em class="${s?"ft":""}">${s?`<b>${s}</b><small>FT</small>`:KO(t).short}</em><span><span class="n">${esc(SN(b))}</span><i style="background:${C[b]}"></i></span></div>`).join("")+`</div>`).join("");
 
 // settings
 document.getElementById("settings").innerHTML = SETTINGS.map(([k,v,on])=>`<div class="set${on?" on":""}"><small>${k}</small><b>${v}</b></div>`).join("");
