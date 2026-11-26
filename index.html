@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ragdoll Super League</title>
-<meta name="description" content="RSL — the Ragdoll Super League. Three divisions of Ragdoll Soccer on Roblox.">
+<meta name="description" content="RSL — the Ragdoll Super League. Four divisions of Ragdoll Soccer on Roblox.">
 <meta name="theme-color" content="#1537d6">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -220,7 +220,7 @@ footer .lg{width:44px;height:44px}
       <div class="ctext">
         <div class="crest"><span class="lg"></span>RSL <em>Season 1 · Est. 2026</em></div>
         <h1><span>Ragdoll</span><span class="y">Super</span><span>League</span></h1>
-        <p>The football league for Ragdoll Soccer on Roblox. Three divisions, one title each.</p>
+        <p>The football league for Ragdoll Soccer on Roblox. Four divisions, one title each.</p>
         <div class="actions">
           <a class="btn primary" href="https://discord.gg/2HEFDX6GGb">Join the Discord</a>
           <a class="btn ghost" href="https://www.roblox.com/discover/?Keyword=Ragdoll%20Soccer">Play the game</a>
@@ -242,7 +242,7 @@ footer .lg{width:44px;height:44px}
 
 <div class="ribbon">
   <div class="wrap">
-    <span><span class="lg"></span>1,000 members and counting — Matchweek 1 is underway. Watch games live on the League Matches stage.</span>
+    <span><span class="lg"></span>1,000+ members and Division 4 is open — Matchweek 1 is underway. Watch games live on the League Matches stage.</span>
     <a class="btn primary" href="https://discord.gg/2HEFDX6GGb" style="min-height:40px">Invite link</a>
   </div>
 </div>
@@ -252,7 +252,7 @@ footer .lg{width:44px;height:44px}
     <div class="head">
       <div>
         <h2><span class="lg mark"></span>Matchweek 1</h2>
-        <p class="lede">The opening round across all three divisions. Managers agree on a time in #manager-chat; the schedule is posted in #fixtures-div-1, -2 and -3.</p>
+        <p class="lede">The opening round across all four divisions. Managers agree on a time in #manager-chat; the schedule is posted in #fixtures-div-1 to #fixtures-div-4.</p>
       </div>
       <div class="tabs" id="fxTabs" role="group" aria-label="Filter fixtures by division"></div>
     </div>
@@ -351,26 +351,28 @@ footer .lg{width:44px;height:44px}
 
 <script>
 {
-const C = {"Brighton":"#0057b8","Bayern Munich":"#dc052d","Real Madrid":"#c9a227","Aston Villa":"#7a1e48","Arsenal":"#ef0107","Manchester United":"#da291c","Fiorentina":"#5b2d8e","Real Betis":"#0bb363","Real Sociedad":"#0067b1","Al-Nassr":"#f2c200",
+const C = {"Beşiktaş":"#111111","Bayern Munich":"#dc052d","Real Madrid":"#c9a227","Aston Villa":"#7a1e48","Arsenal":"#ef0107","Manchester United":"#da291c","Fiorentina":"#5b2d8e","Beitar Jerusalem":"#f2c200","Real Sociedad":"#0067b1","Al-Nassr":"#f2c200",
 "Manchester City":"#6cabdd","Liverpool":"#c8102e","FC Barcelona":"#a50044","Napoli":"#0a84c9","Union Berlin":"#eb1923","Newcastle":"#241f20","Athletic Club":"#ee2523","Atlético Madrid":"#cb3524","Santos FC":"#333","Juventus FC":"#111",
-"Dortmund":"#e8b800","Palermo FC":"#d9718f","AFC Ajax":"#d2122e","Grêmio FBPA":"#0d80bf","VfB Stuttgart":"#e32219","Paris Saint-Germain":"#004170","AC Milan":"#c4001b","Leverkusen":"#e32221","Cerezo Osaka":"#d6006f","Chelsea":"#034694"};
+"Dortmund":"#e8b800","Palermo FC":"#d9718f","AFC Ajax":"#d2122e","Kerala Blasters FC":"#fdb913","VfB Stuttgart":"#e32219","Paris Saint-Germain":"#004170","AC Milan":"#c4001b","Leverkusen":"#e32221","Cerezo Osaka":"#d6006f","Chelsea":"#034694",
+"Inter Milan":"#0068a8","Wrexham":"#d71920","Roma":"#8e1f2f","Villarreal":"#f5d300","Getafe":"#004fa3","Inter Miami":"#f7b5cd","FC Copenhagen":"#1b3b8b","Viking FK":"#00843d","Al-Hilal":"#0047ba","Sparta Rotterdam":"#e2001a","RB Leipzig":"#dd0741","FC Porto":"#00428c"};
 const DIVS = {
-1:[["Brighton","Itay"],["Bayern Munich","veil"],["Real Madrid","vzr6k"],["Aston Villa","lyndon117"],["Arsenal","Arteta"],["Manchester United","Lukas"],["Fiorentina","FX | MLT20"],["Real Betis","Rose"],["Real Sociedad","Monkey•D•Jary"],["Al-Nassr","junalbert6"]],
-2:[["Manchester City","21"],["Liverpool","FX | MLT20"],["FC Barcelona","Zul"],["Napoli","ykbenzii"],["Union Berlin","r4zvan"],["Newcastle","shiny bald egg gaffer"],["Athletic Club","K.SHU"],["Atlético Madrid","RAV3N"],["Santos FC","YOICHI"],["Juventus FC","Scout"]],
-3:[["Dortmund","cloud"],["Palermo FC","Camxron"],["AFC Ajax","tinsmithh"],["Grêmio FBPA","imkynnnn"],["VfB Stuttgart","petar"],["Paris Saint-Germain","Abro"],["AC Milan","Belli"],["Leverkusen","mahh_ddi"],["Cerezo Osaka","Rice"],["Chelsea","Abra the"]]};
-const FX = [[1,"Brighton","Manchester United","2026-11-22T16:00","3-0","FFT"],[1,"Bayern Munich","Arsenal","2026-11-22T17:00","3-3"],[1,"Real Madrid","Aston Villa","2026-11-22T18:00","4-6"],[1,"Fiorentina","Real Betis","2026-11-28T22:00"],[1,"Real Sociedad","Al-Nassr","2026-11-22T20:00","4-7"],
+1:[["Beşiktaş","TS | JackSparrow"],["Bayern Munich","Vacant"],["Real Madrid","vzr6k"],["Aston Villa","lyndon117"],["Arsenal","Arteta"],["Manchester United","Lukas"],["Fiorentina","FX | MLT20"],["Beitar Jerusalem","Rose"],["Real Sociedad","Monkey•D•Jary"],["Al-Nassr","junalbert6"]],
+2:[["Manchester City","21"],["Liverpool","FX | MLT20"],["FC Barcelona","Zul"],["Napoli","ykbenzii"],["Union Berlin","r4zvan"],["Newcastle","shiny bald egg gaffer"],["Athletic Club","R.KAGE"],["Atlético Madrid","RAV3N"],["Santos FC","YOICHI"],["Juventus FC","Scout"]],
+3:[["Dortmund","cloud"],["Palermo FC","Camxron"],["AFC Ajax","Vacant"],["Kerala Blasters FC","Hiyan"],["VfB Stuttgart","petar"],["Paris Saint-Germain","Vacant"],["AC Milan","Belli"],["Leverkusen","mahh_ddi"],["Cerezo Osaka","Rice"],["Chelsea","Lamine_yamal"]],
+4:[["Inter Milan","SPION"],["Wrexham","Void"],["Roma","Solmour ༒"],["Villarreal","Redactz"],["Getafe","Miquel"],["Inter Miami","Kiyora"],["FC Copenhagen","Loki"],["Viking FK","Gio"],["Al-Hilal","fawaz"],["Sparta Rotterdam","Luke"],["RB Leipzig","XNO"],["FC Porto","el dupe"]]};
+const FX = [[1,"Beşiktaş","Manchester United","2026-11-22T16:00","3-0","FFT"],[1,"Bayern Munich","Arsenal","2026-11-22T17:00","3-3"],[1,"Real Madrid","Aston Villa","2026-11-22T18:00","4-6"],[1,"Fiorentina","Beitar Jerusalem","2026-11-28T22:00"],[1,"Real Sociedad","Al-Nassr","2026-11-22T20:00","4-7"],
 [2,"Manchester City","Newcastle","2026-11-27T18:00"],[2,"Union Berlin","Liverpool","2026-11-27T19:00"],[2,"Santos FC","Juventus FC","2026-11-27T13:50"],[2,"FC Barcelona","Napoli","2026-11-23T21:30","5-3"],[2,"Atlético Madrid","Athletic Club","2026-11-27T22:00"],
-[3,"Dortmund","Paris Saint-Germain","2026-11-25T21:15"],[3,"Palermo FC","VfB Stuttgart","2026-11-25T18:00"],[3,"AFC Ajax","Grêmio FBPA","2026-11-25T20:00"],[3,"AC Milan","Chelsea","2026-11-25T21:00"],[3,"Leverkusen","Cerezo Osaka","2026-11-25T22:00"]];
+[3,"Dortmund","Paris Saint-Germain","2026-11-25T21:15","11-10"],[3,"Palermo FC","VfB Stuttgart","2026-11-25T18:00","0-3","FFT"],[3,"AFC Ajax","Kerala Blasters FC","2026-11-25T20:00","10-0"],[3,"AC Milan","Chelsea","2026-11-25T21:00","3-7"],[3,"Leverkusen","Cerezo Osaka","2026-11-25T19:30","4-8"]];
 // kick-off times are Israel time (GMT+2) and are shown as-is for everyone
 const KO = s => { const d=new Date(s+":00Z"), o={timeZone:"UTC",hour:"2-digit",minute:"2-digit",hour12:false}; return { long:d.toLocaleString("en-GB",{...o,weekday:"short",day:"numeric",month:"short"})+" GMT+2", short:d.toLocaleString("en-GB",{...o,day:"numeric",month:"short"}) }; };
 // points: update after each matchweek, e.g. "Arsenal":3
-const PTS = {"Brighton":3,"Bayern Munich":1,"Aston Villa":3,"Arsenal":1,"Fiorentina":3,"Al-Nassr":3,"FC Barcelona":3};
+const PTS = {"Beşiktaş":3,"Bayern Munich":1,"Aston Villa":3,"Arsenal":1,"Al-Nassr":3,"FC Barcelona":3,"Dortmund":3,"AFC Ajax":3,"VfB Stuttgart":3,"Cerezo Osaka":3,"Chelsea":3};
 const SETTINGS = [["Match length","20 min"],["Half-time","On",1],["Team size","8-a-side"],["Field size","Normal"],["Draw at full time","Golden goal"],["Fouls","On",1],["Red card length","45 sec"],["Offside","On",1],["VAR reviews","Off"],["Auto start","Off"]];
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const ini = n => n.replace(/^(FC|AFC|AC|VfB)\s/,"").split(/\s+/).map(w=>w[0]).join("").slice(0,3).toUpperCase();
 const badge = n => `<span class="badge" style="background:${C[n]||"#1537d6"}">${esc(ini(n))}</span>`;
-const tabs = (el, cb) => { const opts=[["all","All"],["1","Division 1"],["2","Division 2"],["3","Division 3"]];
+const tabs = (el, cb) => { const opts=[["all","All"],["1","Division 1"],["2","Division 2"],["3","Division 3"],["4","Division 4"]];
   el.innerHTML = opts.map(([v,l],i)=>`<button type="button" data-v="${v}" aria-pressed="${i===0}">${l}</button>`).join("");
   el.addEventListener("click", e => { const b=e.target.closest("button"); if(!b) return;
     el.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed", x===b)); cb(b.dataset.v); }); };
@@ -380,9 +382,9 @@ const fxList = document.getElementById("fxList");
 const drawFx = d => { fxList.innerHTML = FX.filter(f=>d==="all"||String(f[0])===d).map(([dv,h,a,t,s,n])=>`
   <article class="fx"><div class="meta"><span><span class="lg"></span>Division ${dv}</span><span>Matchweek 1</span></div>
   <div class="teams"><div class="t">${badge(h)}${esc(h)}</div>${s?`<span class="score">${s}</span>`:`<span class="vs">VS</span>`}<div class="t">${badge(a)}${esc(a)}</div></div>
-  <span class="tba${s?" ft":""}">${s?"Full time"+(n?" · "+n:""):KO(t).long}</span></article>`).join(""); };
+  <span class="tba${s?" ft":""}">${s?"Full time"+(n?" · "+n:""):KO(t).long}</span></article>`).join("") + (d==="4"||d==="all" ? `<article class="fx"><div class="meta"><span><span class="lg"></span>Division 4</span><span>Matchweek 1</span></div><div class="teams"><div class="t">12 new clubs</div><span class="vs">TBA</span><div class="t">Fixtures soon</div></div><span class="tba">Fixtures will be posted in #fixtures-div-4</span></article>` : ""); };
 tabs(document.getElementById("fxTabs"), drawFx); drawFx("all");
-document.getElementById("upGrid").innerHTML=[1,2,3].map(d=>`<div class="bcol"><h4>Division ${d}</h4>`+FX.filter(f=>f[0]===d).map(([,a,b,t,s])=>`<div class="bm"><span><i style="background:${C[a]}"></i>${esc(a)}</span><em>${s?`<b>${s}</b>`:KO(t).short}</em><span>${esc(b)}<i style="background:${C[b]}"></i></span></div>`).join("")+`</div>`).join("");
+document.getElementById("upGrid").innerHTML=[1,2,3,4].map(d=>`<div class="bcol"><h4>Division ${d}</h4>`+FX.filter(f=>f[0]===d).map(([,a,b,t,s])=>`<div class="bm"><span><i style="background:${C[a]}"></i>${esc(a)}</span><em>${s?`<b>${s}</b>`:KO(t).short}</em><span>${esc(b)}<i style="background:${C[b]}"></i></span></div>`).join("")+(d===4?`<div class="bm"><span>Fixtures coming soon</span></div>`:"")+`</div>`).join("");
 
 // settings
 document.getElementById("settings").innerHTML = SETTINGS.map(([k,v,on])=>`<div class="set${on?" on":""}"><small>${k}</small><b>${v}</b></div>`).join("");
@@ -391,11 +393,11 @@ document.getElementById("settings").innerHTML = SETTINGS.map(([k,v,on])=>`<div c
 let cDiv = "all";
 const q = document.getElementById("q"), clubList = document.getElementById("clubList");
 const drawClubs = () => { const term = q.value.trim().toLowerCase(); let html="";
-  for (const d of [1,2,3]) { if (cDiv!=="all" && String(d)!==cDiv) continue;
+  for (const d of [1,2,3,4]) { if (cDiv!=="all" && String(d)!==cDiv) continue;
     const list = DIVS[d].filter(c => !term || (c && (c[0]+" "+c[1]).toLowerCase().includes(term)));
     if (!list.length) continue;
     const filled = DIVS[d].filter(Boolean).length;
-    html += `<div class="div-title"><span class="pill">DIV ${d}</span><h3>Division ${d}</h3><small>${filled}/10 clubs</small></div><div class="clubs">` +
+    html += `<div class="div-title"><span class="pill">DIV ${d}</span><h3>Division ${d}</h3><small>${filled}/${Math.max(10,DIVS[d].length)} clubs</small></div><div class="clubs">` +
       list.map(c => c ? `<div class="club">${badge(c[0])}<div><b>${esc(c[0])}</b><small>Manager · ${esc(c[1])}</small></div></div>`
         : `<div class="club open"><span class="badge">+</span><div><b>Open spot</b><small>Claim it with a ticket</small></div></div>`).join("") + `</div>`; }
   clubList.innerHTML = html || `<p class="empty">No club or manager matches “${esc(q.value)}”.</p>`; };
@@ -403,7 +405,7 @@ q.addEventListener("input", drawClubs);
 tabs(document.getElementById("clubTabs"), v => { cDiv=v; drawClubs(); }); drawClubs();
 
 // tables
-document.getElementById("tableList").innerHTML = [1,2,3].map(d => `<div class="tbl"><h3><span class="lg"></span>Division ${d}</h3><div class="scroll"><table>
+document.getElementById("tableList").innerHTML = [1,2,3,4].map(d => `<div class="tbl"><h3><span class="lg"></span>Division ${d}</h3><div class="scroll"><table>
   <thead><tr><th>#</th><th>Club</th><th>Pts</th></tr></thead><tbody>` +
   DIVS[d].filter(Boolean).map((c,i)=>[c[0],PTS[c[0]]||0,i]).sort((a,b)=>b[1]-a[1]||a[2]-b[2]).map(([n,p],i)=>`<tr><td>${i+1}</td><td>${esc(n)}</td><td class="pts">${p}</td></tr>`).join("") +
   `</tbody></table></div></div>`).join("");
